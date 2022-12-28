@@ -1,11 +1,18 @@
-import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { View, 
+    Text, 
+    Image, 
+    TouchableOpacity,
+    ScrollView,
+    Dimensions
+} from 'react-native'
 import React, { useLayoutEffect } from 'react'
 import {useNavigation , useRoute} from '@react-navigation/native'
-import Icon from 'react-native-vector-icons/FontAwesome5'
 
 import {urlFor} from '../../sanity'
 
 const ImageDetail = () => {
+
+    const width = Dimensions.get('window').width
 
     const navigation = useNavigation()
 
@@ -17,21 +24,44 @@ const ImageDetail = () => {
     },[])
 
     const {params:{item}} = useRoute()
+
   return (
     <View className = 'w-full flex-1 items-end justify-center'>
         <TouchableOpacity
             onPress={()=> navigation.goBack()}
-            className = 'absolute p-3 top-16 right-3'
+            className = 'absolute p-3 top-10 right-3 z-10'
         >
-           <Text>Đóng</Text> 
+            <Text
+                className ='font-bold text-pink-500'
+            >
+                Đóng
+            </Text> 
         </TouchableOpacity>
-        <Image
-            resizeMode='contain'
-            source={{
-                uri: urlFor(item).url()
-            }}
-            className = 'w-full h-1/2 mt-2 '
-        />
+        <ScrollView
+            showsVerticalScrollIndicator = {false}
+        > 
+        {
+            item?.map((item,index) => (
+            <View
+                key={index}
+                className = 'mt-2'
+                style= {{
+                    width : width,
+                    height : width / 3 * 2
+                }}
+            >
+                <Image
+                    resizeMode='contain'
+                    source={{
+                        uri: urlFor(item).url()
+                    }}
+                    className = 'w-full h-full'
+                />
+            </View>
+            ))
+        }           
+        </ScrollView>
+        
     </View>
   )
 }

@@ -14,7 +14,6 @@ import client ,{urlFor} from '../../sanity'
 import formatTitle from '../../utills/formatTitle'
 import formatDate from '../../utills/formatDate'
 import ApiCall from '../../api/ApiCall'
-import { TVEventHandler } from 'react-native-web'
 
 const SearchTourPopup = () => {
 

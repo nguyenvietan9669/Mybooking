@@ -109,8 +109,7 @@ const TourSlide = ({title,category = []}) => {
           tours?.map((item) => (
             <TourCard key={item._id}  item = {item} />
           ))
-        }
-        
+        }        
       </ScrollView>}
     </View>
   )

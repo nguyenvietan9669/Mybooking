@@ -25,6 +25,12 @@ import ReceiptTour from './screens/Tour/ReceiptTour';
 import ReceiptVisa from './screens/Visa/ReceiptVisa';
 import ReceiptCombo from './screens/Combo/ReceiptCombo';
 import HotelDetail from './screens/Hotel/HotelDetail';
+import UtilitiesScreen from './screens/Hotel/UtilitiesScreen';
+import PolicyScreen from './screens/Hotel/PolicyScreen';
+import DescriptionScreen from './screens/Hotel/DescriptionScreen';
+import HotelScreen from './screens/Hotel/HotelScreen';
+import SearchHotel from './screens/Hotel/SearchHotel';
+import ReceiptHotel from './screens/Hotel/ReceiptHotel';
 
 const Stack = createNativeStackNavigator();
 
@@ -74,9 +80,38 @@ export default function App() {
         }}
       />
   {/* Khách sạn  */}
-      <Stack.Screen name="Hotel" component={HotelDetail} 
+      <Stack.Screen name="HotelDetail" component={HotelDetail} 
         options = {{
-          // presentation: 'fade',
+          headerShown:false 
+        }}
+      />
+      <Stack.Screen name="Utilities" component={UtilitiesScreen} 
+        options = {{
+          headerShown:false 
+        }}
+      />
+      <Stack.Screen name="Policy" component={PolicyScreen} 
+        options = {{
+          headerShown:false 
+        }}
+      />
+      <Stack.Screen name="Description" component={DescriptionScreen} 
+        options = {{
+          headerShown:false 
+        }}
+      />
+      <Stack.Screen name="Hotel" component={HotelScreen} 
+        options = {{
+          headerShown:false 
+        }}
+      />
+      <Stack.Screen name="SearchHotel" component={SearchHotel} 
+        options = {{
+          headerShown:false 
+        }}
+      />
+      <Stack.Screen name="ReceiptHotel" component={ReceiptHotel} 
+        options = {{
           headerShown:false 
         }}
       />

@@ -2,11 +2,13 @@ import { View,
   Text,
   Image, 
   TouchableOpacity,
-  Animated 
+  Animated, 
+  ImageBackground
 } from 'react-native'
 import React ,{useRef, useEffect} from 'react'
 import { useNavigation } from '@react-navigation/native'
 import  Icon  from 'react-native-vector-icons/FontAwesome5'
+import formatTitle from '../utills/formatTitle'
 
 const DestinationCard = ({id,url,title}) => {
 
@@ -43,7 +45,18 @@ const DestinationCard = ({id,url,title}) => {
               }}
               className = 'h-48 w-72 rounded-lg '
           />
-          <View
+          <ImageBackground
+            source={require('../assets/location.png')}
+            className = 'absolute bottom-0 right-0 h-36 w-72 items-end justify-end p-2'
+            resizeMode= 'fill'
+          >
+              <Text
+                className = 'font-black uppercase text-xl text-white shadow'
+              >
+                {formatTitle(title,14)}
+              </Text>
+          </ImageBackground>
+          {/* <View
             className ='flex-row items-center bg-pink-400 absolute top-0 left-0 px-2 shadow rounded-tl-lg rounded-br-lg'
           >
             <View
@@ -56,7 +69,7 @@ const DestinationCard = ({id,url,title}) => {
               />
               </View>
             <Text className= ' font-bold text-lg text-white'>{title}</Text>
-          </View>
+          </View> */}
       </TouchableOpacity>
     </Animated.View>
   )

@@ -3,7 +3,8 @@ import { View,
         TouchableOpacity,
         ScrollView,
         Image,
-        TextInput 
+        TextInput,
+        Platform 
 } from 'react-native'
 import React ,{useState} from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native'
@@ -48,13 +49,18 @@ const ReceiptTour = () => {
             .then(result => customerID = result._id)
             .catch(() => setError('Đã có lỗi xảy ra vui lòng thử lại'))
             await ApiCall.createReceiptTour(customerID,item._id,count)
-            .then(()=> console.log('succes'))
-            .catch(() => setError('Đã có lỗi xảy ra vui lòng thử lại'))
-            await ApiCall.setTourCount(item._id,remain)
-            setTimeout(()=> {
+            .then(() => {
+                setTimeout(()=> {
+                    setIsLoading(false)
+                    setSucces('Bạn đã đặt thành công nhân viên sẽ gọi cho bạn để xác nhận lại')
+                },1000) 
+                console.log('sucess')
+            })
+            .catch(() => {
+                setError('Đã có lỗi xảy ra vui lòng thử lại')
                 setIsLoading(false)
-                setSucces('Bạn đã đặt Tour thành công nhân viên sẽ gọi cho bạn để xác nhận lại')
-            },1000)           
+            })   
+            await ApiCall.setTourCount(item._id,remain)       
         }
     }
   return (
@@ -239,7 +245,7 @@ const ReceiptTour = () => {
                             Số lượng:
                         </Text>
                         <TextInput
-                            value={count}
+                            defaultValue = {`${count}`}
                             className ='border-2 px-3 py-2 rounded-lg'
                             placeholder='nhập số lượng'
                             keyboardType='numeric'

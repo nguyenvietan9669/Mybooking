@@ -14,7 +14,7 @@ const Discover = () => {
     const [datas, setDatas] = useState([])
     const [isLoading,setIsLoading] = useState(false)
     const [first,setFirst] = useState(0)
-    const perPage = 10
+    const perPage = 5
 
     useEffect(()=> {
         const getData = async () => {
@@ -23,6 +23,10 @@ const Discover = () => {
                 setDatas(prev => [...prev,...data])
             })
             await ApiCall.getComboDomestic(first,perPage)
+            .then(data => {
+                setDatas(prev => [...prev,...data])
+            })
+            await ApiCall.getHotelDomestic(first,perPage)
             .then(data => {
                 setDatas(prev => [...prev,...data])
             })

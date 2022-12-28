@@ -94,7 +94,11 @@ const More = ({title,option = []}) => {
                         }}
                         className ='w-full h-full  rounded-xl'
                     />
-                    <Text className ='absolute left-0 mx-3 w-full top-1/3 -translate-x-3 text-center text-white font-bold text-xl'>{item.city ? formatTitle(item.city.trim(),9): formatTitle(item.nation)}</Text>
+                    <Text 
+                        className ='absolute left-0 mx-3 w-full top-1/3 -translate-x-3 text-center text-white font-bold text-xl'
+                    >
+                        {item.city ? formatTitle(item.city.trim(),9): formatTitle(item.nation)}
+                    </Text>
                 </TouchableOpacity>
             ))}
       </View>

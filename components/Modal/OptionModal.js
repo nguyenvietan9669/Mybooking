@@ -3,6 +3,7 @@ import { View, Text , Modal } from 'react-native'
 import React, {useState, useEffect} from 'react'
 
 const OptionModal = ({visible,children}) => {
+    
     const [showModal,setShowModal] = useState(visible)
     const toggleModal = () => {
         if(visible){

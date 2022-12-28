@@ -4,17 +4,17 @@ import {useNavigation} from '@react-navigation/native'
 
 const LocationCard = ({location,setState}) => {
 
-    const navigate = useNavigation()
-    const handlePress = () => {
-        setState(location)
-        navigate.goBack()
-    }
+  const navigate = useNavigation()
+  const handlePress = () => {
+    setState(location)
+    navigate.goBack()
+  }
 
 
   return (
     <TouchableOpacity 
-        onPress={handlePress}
-        className ='border-b-2 border-gray-400 px-2 mt-2 pb-2'
+      onPress={handlePress}
+      className ='border-b-2 border-gray-400 px-2 mt-2 pb-2'
     >
       <View>
         <Text className ='font-bold'>{location.location.city}, {location.location.nation}</Text>

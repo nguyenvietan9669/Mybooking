@@ -3,7 +3,7 @@ import React, { useEffect, useState,memo } from 'react'
 import DestinationCard from './DestinationCard'
 import client, { urlFor } from '../sanity'
 
-const Destination = ({title}) => {
+const Destination = ({title=[]}) => {
 
     const [active,setActive] = useState(0)
     const isActive = 'w-fit ml-4 px-4 py-1 bg-pink-500 rounded-full'
@@ -46,8 +46,8 @@ const Destination = ({title}) => {
         horizontal
         showsHorizontalScrollIndicator = {false}
     >
-        {
-            title.map((item,index)=> 
+        {title &&
+            title?.map((item,index)=> 
                 <TouchableOpacity onPress={() => handlerPress(index)} key={index} className = {active === index ? isActive : noActive} >
                     <Text 
                         className = {active === index ? 'font-bold text-sm text-white' : 'font-bold text-sm text-pink-500' }

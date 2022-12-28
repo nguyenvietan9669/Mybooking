@@ -34,7 +34,6 @@ export default {
             to : {
                 type : 'flight'
             },
-            validation: Rule => Rule.required()
         },
         {
             name : 'visa',
@@ -43,7 +42,22 @@ export default {
             to : {
                 type : 'visa'
             },
-            validation: Rule => Rule.required()
+        },
+        {
+            name : 'tour',
+            title : 'Tour',
+            type : 'reference',
+            to : {
+                type : 'tour'
+            },
+        },
+        {
+            name : 'hotel',
+            title : 'Khách sạn',
+            type : 'reference',
+            to : {
+                type : 'hotel'
+            },
         },
         {
             name : 'price',

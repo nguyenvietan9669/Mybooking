@@ -271,7 +271,6 @@ const ApiCall = {
         `)
     },
     createCustomer : (name,phone,email) => {
-        console.log(name,phone, email)
         return client.create({
             _type: 'customer',
             name : name,
@@ -280,7 +279,6 @@ const ApiCall = {
         })
     },
     createReceiptTour : (customerId,tourId,count) => {
-        console.log(customerId,tourId,count)
         return client.create({
             _type : 'receiptTour',
             customer : {
@@ -346,7 +344,30 @@ const ApiCall = {
             visa -> {
                 ...,
                 type[] ->
+            },
+            tour -> {
+                ...,
+                destination[] -> {
+                    ...,
+                },
+                image[],
+            },
+            hotel -> {
+                ...,
+                utilities[] -> {
+                    ...,
+                },
+                address -> {
+                    ...,
+                    location -> {
+                    ...,
+                    }
+                },           
+                policy[] -> {
+                    ...,
+                }
             }
+
         }  
     `)
     },
@@ -408,7 +429,7 @@ const ApiCall = {
     },
     getLocation : () => {
         return client.fetch(`
-        *[_type == 'location']| order(_id) [0...7]{
+        *[_type == 'location']| order(city) [0...7]{
             ...,
             _id,
             city
@@ -506,8 +527,90 @@ const ApiCall = {
             }
         }
         `)
+    },
+    getHotelDomestic : (first,perPage) => {
+        return client.fetch(`*[_type == 'hotel' && address -> location -> nation match 'việt nam'  ]
+        | order(_updatedAt) [${first}...${first + perPage}]{
+            ...,
+            utilities[] -> {
+                ...,
+            },
+            address -> {
+                ...,
+                location -> {
+                ...,
+                }
+            },           
+            policy[] -> {
+                ...,
+            }
+        }`)
+    },
+    getHotelFiveStar : (id) => {
+        return  client.fetch(`
+        *[_type == 'hotel'  && 
+        address -> location -> _id == '${id}' &&
+        rank >= 4
+        ]| order(_updatedAt) []{
+            ...,
+            utilities[] -> {
+                ...,
+            },
+            address -> {
+                ...,
+                location -> {
+                ...,
+                }
+            },           
+            policy[] -> {
+                ...,
+            }
+        }
+        `)
+    },
+    searchHotel : (value) => {
+        return client.fetch(`
+        *[_type == 'hotel'
+            && (address -> name match '${value}'
+            || title match '${value}' 
+            || address -> location -> city match '${value}'  )
+            ]{
+                ...,
+                utilities[] -> {
+                    ...,
+                },
+                address -> {
+                    ...,
+                    location -> {
+                    ...,
+                    }
+                },           
+                policy[] -> {
+                    ...,
+                }
+            }
+        `)
+    },
+    getUtilities : (id) => {
+        return client.fetch(`
+            *[_type == 'utilities' && _id == '${id}' ]{
+                ...,
+            }       
+        `)
+    },
+    createReceiptHotel : (customerId,name,address,room,count) => {
+        return client.create({
+            _type : 'receiptHotel',
+            customer : {
+                _type : 'reference',
+                _ref : customerId
+            },
+            hotel  :name,
+            address: address,
+            room   : room,
+            count  : parseInt(count)
+        })
     }
-
 }
 
 export default ApiCall

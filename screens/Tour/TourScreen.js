@@ -94,104 +94,104 @@ const TourScreen = () => {
                 </View>
             </View>
         </OptionModal>
-     <View>
-        <View className = 'justify-end w-full h-24 pb-2 px-3 bg-pink-500 shadow'>
-           <View className ='flex-row gap-3 items-center'>
-            <TouchableOpacity
-                className = 'px-3'
-            >
-                <Icon 
-                    name='arrow-left' 
-                    color='#fff' 
-                    size ={20} 
-                    onPress = {() => {
-                        navigation.goBack()
-                        }}
-                    />
-                </TouchableOpacity>
-                <TouchableOpacity 
-                    onPress={() => {
-                        navigation.navigate('SearchTour')
-                    }}
-                    className = 'relative flex-1'
-                >  
-                <View className='absolute top-2 left-3  z-10'>
-                    <Icon 
-                        name='search' 
-                        color='#000' 
-                        size = {20}
-                    />
-                 </View>
-                <View className = 'flex-1 bg-white rounded-lg p-2 pl-10'>
-                    <Text className = 'text-gray-400'>Tìm kiếm tour thích hợp</Text>
-                </View>
-                  
-                </TouchableOpacity>
+        <View>
+            <View className = 'justify-end w-full h-24 pb-2 px-3 bg-pink-500 shadow'>
+            <View className ='flex-row gap-3 items-center'>
                 <TouchableOpacity
-                    onPress={() => {setVisibleModal(true)}}
+                    className = 'px-3'
                 >
-                    <Icon name='ellipsis-h' color='#fff' size ={20} />
-                </TouchableOpacity>
-            </View>                      
-        </View>
-     </View>
-     <ScrollView 
-        className = 'bg-white'
-        contentContainerStyle = {{
-            paddingBottom : 150,
-    
-        }}
-    >
-        <TourSlide 
-            title='Các tour bán chạy' 
-            category = {categoryList}  
-            // tours = {tourList} 
-        />
-        <TourSlide 
-            title='Tour theo chủ đề' 
-            category = {topicList}  
-            // tours = {tourList} 
-        />
-        <TourSlide 
-            title='Du lịch khắp thế giới' 
-            category = {locationList}  
-            // tours = {tourList} 
-        />
-
-        <ScrollView 
-            horizontal
-            showsHorizontalScrollIndicator = {false}
-            className = 'mt-5 mx-3'
-        >
-            {
-                sales?.map(item => (
-                    <TouchableOpacity 
-                        onPress={() => { navigation.navigate('SaleDetail',{sale:item})}}
-                        key={item._id}
-                        className ='mr-3 rounded-lg overflow-hidden'
-                    >
-                        <Image
-                            className ='w-72 h-48'
-                            source={{
-                                uri:urlFor(item.image).url()
+                    <Icon 
+                        name='arrow-left' 
+                        color='#fff' 
+                        size ={20} 
+                        onPress = {() => {
+                            navigation.goBack()
                             }}
                         />
                     </TouchableOpacity>
-                ))
-            }
-        </ScrollView>
+                    <TouchableOpacity 
+                        onPress={() => {
+                            navigation.navigate('SearchTour')
+                        }}
+                        className = 'relative flex-1'
+                    >  
+                    <View className='absolute top-2 left-3  z-10'>
+                        <Icon 
+                            name='search' 
+                            color='#000' 
+                            size = {20}
+                        />
+                    </View>
+                    <View className = 'flex-1 bg-white rounded-lg p-2 pl-10'>
+                        <Text className = 'text-gray-400'>Tìm kiếm tour thích hợp</Text>
+                    </View>
+                    
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => {setVisibleModal(true)}}
+                    >
+                        <Icon name='ellipsis-h' color='#fff' size ={20} />
+                    </TouchableOpacity>
+                </View>                      
+            </View>
+        </View>
+        <ScrollView 
+            className = 'bg-white'
+            contentContainerStyle = {{
+                paddingBottom : 150,
         
-        <More title='Khám phá thêm' 
-            option = {[{
-                id:0,
-                name: 'Tour Quốc Tế',
-            },
-            {
-                id:1,
-                name: 'Tour Nội Địa',
-            }]} 
-        />
-     </ScrollView>
+            }}
+        >
+            <TourSlide 
+                title='Các tour bán chạy' 
+                category = {categoryList}  
+                // tours = {tourList} 
+            />
+            <TourSlide 
+                title='Tour theo chủ đề' 
+                category = {topicList}  
+                // tours = {tourList} 
+            />
+            <TourSlide 
+                title='Du lịch khắp thế giới' 
+                category = {locationList}  
+                // tours = {tourList} 
+            />
+
+            <ScrollView 
+                horizontal
+                showsHorizontalScrollIndicator = {false}
+                className = 'mt-5 mx-3'
+            >
+                {
+                    sales?.map(item => (
+                        <TouchableOpacity 
+                            onPress={() => { navigation.navigate('SaleDetail',{sale:item})}}
+                            key={item._id}
+                            className ='mr-3 rounded-lg overflow-hidden'
+                        >
+                            <Image
+                                className ='w-72 h-48'
+                                source={{
+                                    uri:urlFor(item.image).url()
+                                }}
+                            />
+                        </TouchableOpacity>
+                    ))
+                }
+            </ScrollView>
+        
+            <More title='Khám phá thêm' 
+                option = {[{
+                    id:0,
+                    name: 'Tour Quốc Tế',
+                },
+                {
+                    id:1,
+                    name: 'Tour Nội Địa',
+                }]} 
+            />
+        </ScrollView>
     </View>
   )
 }

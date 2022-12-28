@@ -7,16 +7,19 @@ export default {
             name : 'title',
             title : 'Tên khác sạn',
             type : 'string',
+            validation: Rule => Rule.required()
         },
         {
             name : 'rank',
             title : 'Đánh giá theo sao',
-            type : 'number'
+            type : 'number',
+            validation: Rule => Rule.required()
         },
         {
             name : 'type',
             title : 'Loại hình',
-            type : 'string'
+            type : 'string',
+            validation: Rule => Rule.required()
         },
         {
             name : 'address',
@@ -26,7 +29,8 @@ export default {
                 {
                     type : 'address'
                 }
-            ]
+            ],
+            validation: Rule => Rule.required()
         },
         {
             name : 'description',
@@ -47,7 +51,8 @@ export default {
                         }
                     ]
                 }
-            ]
+            ],
+            validation: Rule => Rule.required()
         },
         {
             name : 'policy',
@@ -64,17 +69,26 @@ export default {
                     ]
                 }
 
-            ]
+            ],
+            validation: Rule => Rule.required()
+
         },
         {
             name : 'background',
             title : 'Ảnh nền',
-            type : 'image'
+            type : 'image',
+            validation: Rule => Rule.required()
         },
         {
             name : 'image',
             title : 'Ảnh chi tiết',
-            type : 'image'
+            type : 'array',
+            of : [
+                {
+                    type : 'image'
+                }
+            ],
+            validation: Rule => Rule.required()
         },
         {
             name : 'room',
@@ -83,14 +97,10 @@ export default {
             of : [
                 {
                     title : 'Danh sách phòng',
-                    type : 'reference',
-                    to : [
-                        {
-                            type : 'room'
-                        }
-                    ]
+                    type : 'room',
                 }
-            ]
+            ],
+            validation: Rule => Rule.required()
         }
     ]
 }

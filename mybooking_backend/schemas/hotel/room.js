@@ -6,12 +6,14 @@ export default {
         {
             name : 'title',
             title : 'Tên phòng',
-            type : 'string'
+            type : 'string',
+            validation: Rule => Rule.required()
         }, 
         {
             name : 'area',
             title : 'Diện tích',
-            type : 'string'
+            type : 'string',
+            validation: Rule => Rule.required()
         },
         {
             name : 'direction',
@@ -21,12 +23,26 @@ export default {
         {
             name : 'bed',
             title : 'Giường',
-            type : 'string'
+            type : 'string',
+            validation: Rule => Rule.required()
         },
         {
             name : 'guestNumber',
             title : 'Số lượng khách ở',
-            type : 'number'
+            type : 'number',
+            validation: Rule => Rule.required()
+
+        },
+        {
+            name : 'image',
+            title : 'Ảnh chi tiết',
+            type : 'array',
+            of : [
+                {
+                    type : 'image'
+                }
+            ],
+            validation: Rule => Rule.required()
         },
         {
             name : 'utilities',
@@ -46,13 +62,21 @@ export default {
         },
         {
             name : 'service',
-            title : 'Dịch vụ thêm',
-            type : 'blockContent'
+            title : 'Bữa sáng',
+            type : 'string',
+            validation: Rule => Rule.required()
         },
         {
             name : 'price',
-            title : 'Giá phòng trên 1 đêm',
-            type : 'number'
+            title : 'Giá phòng trên 1 đêm (chưa tính giảm)',
+            type : 'number',
+            validation: Rule => Rule.required()
+        },
+        {
+            name : 'discount',
+            title : 'Giảm giá (%)',
+            type : 'number',
+            validation: Rule => Rule.required()
         }
     ]
 }

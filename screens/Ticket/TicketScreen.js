@@ -68,7 +68,6 @@ const TicketScreen = () => {
 
     const handleSubmitPassenger = () => {
         setPassenger([])
-        console.log(passenger)
         if(numberPeople.count > 0){
             setPassenger(prev => [...prev,numberPeople])
         }
@@ -123,7 +122,6 @@ const TicketScreen = () => {
         }
         if(isCheck){
             returnDate = `${yearReturn}-${monthReturn}-${dateReturn}`
-            console.log(returnDate)
         }
         if(departure && destination && total > 0) {
             navigation.navigate('Flight',{departure,destination,seat:listSeat[indexSeat],count:total,fromDate:`${yearPar}-${monthPar}-${datePar}`,returnDate})
@@ -461,7 +459,6 @@ const TicketScreen = () => {
                                 }
                             }}
                             onPressOut = {() => {
-                                console.log(dateReturn)
                                 if(dateReturn == ''){
                                     setDateReturn(new Date().getDate())
                                 }

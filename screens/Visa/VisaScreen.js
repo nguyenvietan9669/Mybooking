@@ -220,7 +220,7 @@ const VisaScreen = () => {
         </View>
         <ScrollView
              contentContainerStyle = {
-                Platform.OS == 'android' ? {paddingBottom:200} : {}
+                Platform.OS == 'android' ? {paddingBottom:200} : {paddingBottom:350}
              }
         > 
             {   

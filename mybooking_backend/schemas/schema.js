@@ -39,6 +39,7 @@ import address from './hotel/address'
 import policy from './hotel/policy'
 import room from './hotel/room'
 import utilities from './hotel/utilities'
+import receiptHotel from './hotel/receiptHotel'
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
   // We name our schema
@@ -81,7 +82,8 @@ export default createSchema({
     address,
     policy,
     room,
-    utilities
+    utilities,
+    receiptHotel
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
     

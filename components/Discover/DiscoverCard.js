@@ -25,8 +25,10 @@ const DiscoverCard = ({item}) => {
         onPress={()=> {
             if(item._type.includes('tour')){
                 navigation.navigate('TourDetail',{item}) 
-            }else {
+            }else if (item._type.includes('combo')) {
                 navigation.navigate('ComboDetail',{item}) 
+            }else {
+                navigation.navigate('HotelDetail',{item}) 
             }
         }}
         className ='bg-white overflow-hidden mr-3'
@@ -47,7 +49,9 @@ const DiscoverCard = ({item}) => {
             <View
                 className = 'absolute flex-row bg-pink-400 py-1 px-2 z-10 rounded-tl-lg rounded-br-lg '
                 style = {{
-                    backgroundColor : item._type.includes('tour') ? '#FF5c8A' : '#1874cd'
+                    backgroundColor : item._type.includes('tour') ? '#FF5c8A' :
+                    item._type.includes('combo') ? '#1874cd' :
+                      '#ff7f00'
                 }}
             >
                 <View
@@ -63,8 +67,10 @@ const DiscoverCard = ({item}) => {
                     className ='font-bold text-white'
                 >
                     {item._type.includes('tour') ? 
-                    item.destination[0].city : 
-                    item.flight.destination.location.city}
+                    item.destination[0].city : item._type.includes('combo') ?
+                    item.flight.destination.location.city : 
+                    item.address.location.city
+                    }
                 </Text>
             </View>
         </View>

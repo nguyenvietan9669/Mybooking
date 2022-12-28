@@ -31,6 +31,28 @@ const Combo = ({title}) => {
             },
             visa -> {
                 ...
+            },
+            tour -> {
+                ...,
+                destination[] -> {
+                    ...,
+                },
+                image[],
+            },
+            hotel -> {
+                ...,
+                utilities[] -> {
+                    ...,
+                },
+                address -> {
+                    ...,
+                    location -> {
+                    ...,
+                    }
+                },           
+                policy[] -> {
+                    ...,
+                }
             }
           }  
         `).then(data  => {
@@ -46,8 +68,8 @@ const Combo = ({title}) => {
     >
         {
             title.map((item,index)=> 
-            <View key={index} className = 'w-fit text-pink-500 rounded-full ml-4 px-4 py-1'>
-                <Text className = 'font-bold text-sm text-white'>{item}</Text>
+            <View key={index} className = 'w-fit rounded-full ml-4 py-1'>
+                <Text className = 'font-bold text-sm  text-pink-500'>{item}</Text>
             </View>
             )
         }

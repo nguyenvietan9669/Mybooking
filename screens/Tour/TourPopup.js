@@ -59,7 +59,18 @@ const TourPopup = () => {
         showsVerticalScrollIndicator = {false}
         className = 'mt-5 mx-4'
     >   
-        {tourList?.map(item => (
+        { tourList.length == 0 ? 
+            <View
+                className = 'w-full items-center mt-10'
+            >
+                <Text
+                    className = 'font-bold text-gray-300'
+                >
+                    Không có tour nào cho mục này
+                </Text>
+            </View>
+        :
+        tourList?.map(item => (
             <TouchableOpacity
                 onPress={()=> handleShowDetail(item)}
                 key={item._id} 
@@ -78,7 +89,8 @@ const TourPopup = () => {
                 </View>
             </View>
         </TouchableOpacity>
-        ))}
+        ))
+        }
       </ScrollView>
     </View>
   )

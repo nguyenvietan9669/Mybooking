@@ -22,10 +22,12 @@ const TourDetail = () => {
     const [navbar,setNavbar] = useState(false)
     // const width = Dimensions.get('window').width
     const width = Dimensions.get('window').width
+    
     const {params:{
         item
     }} = useRoute()
-
+    
+    const arrImage = [...item.image]
     const fadeAnim = useRef(new Animated.Value(0)).current 
 
     const fadeOut = () => {
@@ -129,9 +131,9 @@ const TourDetail = () => {
             />
             <TouchableOpacity 
                 onPress={()=> navigation.goBack()}
-                className ='absolute top-1/4 left-6 px-2  rounded-full bg-pink-500 items-center justify-center'
+                className ='absolute top-1/4 left-6 py-2 px-4  rounded-full bg-pink-500 items-center justify-center'
             >
-                <Icon name='angle-left' color='#fff' size= {30} />
+                <Icon name='angle-left' color='#fff' size= {20} />
             </TouchableOpacity>
             <View 
                 className = 'absolute top-3/4 w-3/4 h-fit gap-2 rounded-xl shadow bg-white p-3'
@@ -163,7 +165,7 @@ const TourDetail = () => {
                 </Text>
             </View>
             <View className = 'flex-row gap-2 mt-2'>
-                <Icon name ='globe-americas' color='#FA5050' size = {20} />
+                <Icon name ='motorcycle' color='#FA5050' size = {20} />
                 <Text >
                     <Text className = 'font-bold'>Phương tiện: </Text> 
                     <Text> {item.vehicle}</Text>
@@ -198,7 +200,7 @@ const TourDetail = () => {
                 <TouchableOpacity
                     key={item._key}
                     onPress={()=> {
-                        navigation.navigate('ImageDetail',{item})
+                        navigation.navigate('ImageDetail',{item:arrImage})
                     }}
                     className = 'mr-3 mt-3'
                 >

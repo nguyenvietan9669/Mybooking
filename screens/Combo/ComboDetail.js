@@ -12,6 +12,7 @@ import  Icon  from 'react-native-vector-icons/FontAwesome5'
 import SanityBlockContent from '@sanity/block-content-to-react'
 import {PROJECT_ID} from "@env"
 import formatCash from '../../utills/formatCash'
+import formatTitle from '../../utills/formatTitle'
 
 const ComboDetail = () => {
 
@@ -23,7 +24,6 @@ const ComboDetail = () => {
             headerShown : false
         })
     },[])
-
 
   return (
    <>
@@ -53,74 +53,121 @@ const ComboDetail = () => {
        <View
          className = 'p-3'
        >
-         <View
-             className = 'items-center gap-y-2 mt-3 mx-3'
-         >
-             <View
-                 className = 'w-4/5 p-3 bg-white rounded-xl shadow'
-             >
-                 <Text
-                     className ='font-bold'
-                 >
-                     Vé máy bay
-                 </Text>
-                 <View>
-                     <Text>{item.flight.date_departure}</Text>
-                     <View
-                         className ='flex-row gap-x-2'
-                     >
-                         <Text>
-                             {item.flight.departure.name}
-                         </Text>
-                         <Icon
-                             name = 'arrow-right'
-                             color= '#000'
-                             size = {15}
-                         />
-                         <Text>
-                             {item.flight.destination.name}
-                         </Text>
-                     </View>
-                     <Image
-                         source={{uri:urlFor(item.flight.plane.brand.logo).url()}}
-                         className = 'w-1/2 h-10'
-                         resizeMode='contain'
-                     />
-                 </View>
-             </View>
-             <View
-                 className ='w-4/5 p-3 bg-white rounded-xl shadow'
-             >
-                 <Text
-                     className ='font-bold'
-                 >
-                     Visa
-                 </Text>
-                 <View
-                     className ='flex-row justify-between'
-                 >
-                     <Text>{item.visa.name}</Text>
-                    <TouchableOpacity
-                        onPress={()=> navigation.navigate('VisaDetail',{item:item.visa})}
-                    >
-                      <Text
-                          className = 'text-sky-400 text-xs'
-                      >
-                         xem chi tiết
-                      </Text>
-                    </TouchableOpacity>
-                 </View>
-             </View>  
-             <View
-                className ='bg-white w-4/5 px-3 py-5 rounded-lg'
-             >
-                <Text
-                    className ='text-orange-500 font-bold'
+            <View
+                className = 'items-center gap-y-2 mt-3 mx-3'
+            >
+                { item.flight ? <View
+                    className = 'w-4/5 p-3 bg-white rounded-xl shadow'
                 >
-                   Giá: {formatCash(item.price)}
-                </Text>
-            </View>   
-         </View>
+                    <Text
+                        className ='font-bold'
+                    >
+                        Vé máy bay
+                    </Text>
+                    <View>
+                        <Text>{item.flight.date_departure}</Text>
+                        <View
+                            className ='flex-row gap-x-2'
+                        >
+                            <Text>
+                                {item.flight.departure.name}
+                            </Text>
+                            <Icon
+                                name = 'arrow-right'
+                                color= '#000'
+                                size = {15}
+                            />
+                            <Text>
+                                {item.flight.destination.name}
+                            </Text>
+                        </View>
+                        <Image
+                            source={{uri:urlFor(item.flight.plane.brand.logo).url()}}
+                            className = 'w-1/2 h-10'
+                            resizeMode='contain'
+                        />
+                    </View>
+                </View>:<></>}
+                {item.visa ? <View
+                    className ='w-4/5 p-3 bg-white rounded-xl shadow'
+                >
+                    <Text
+                        className ='font-bold'
+                    >
+                        Visa
+                    </Text>
+                    <View
+                        className ='flex-row justify-between'
+                    >
+                        <Text>{item.visa.title}</Text>
+                        <TouchableOpacity
+                            onPress={()=> navigation.navigate('VisaDetail',{item:item.visa})}
+                        >
+                        <Text
+                            className = 'text-sky-400 text-xs'
+                        >
+                            xem chi tiết
+                        </Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>:<></>}
+
+                {item.tour ? <View
+                    className ='w-4/5 p-3 bg-white rounded-xl shadow'
+                >
+                    <Text
+                        className ='font-bold'
+                    >
+                        Tour
+                    </Text>
+                    <View
+                        className ='flex-row justify-between'
+                    >
+                        <Text>{formatTitle(item.tour.title,28)}</Text>
+                        <TouchableOpacity
+                            onPress={()=> navigation.navigate('TourDetail',{item:item.tour})}
+                        >
+                        <Text
+                            className = 'text-sky-400 text-xs'
+                        >
+                            xem chi tiết
+                        </Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>:<></>}
+                {item.tour ? <View
+                    className ='w-4/5 p-3 bg-white rounded-xl shadow'
+                >
+                    <Text
+                        className ='font-bold'
+                    >
+                        Khách sạn
+                    </Text>
+                    <View
+                        className ='flex-row justify-between'
+                    >
+                        <Text>{item.hotel.title}</Text>
+                        <TouchableOpacity
+                            onPress={()=> navigation.navigate('HotelDetail',{item:item.hotel})}
+                        >
+                        <Text
+                            className = 'text-sky-400 text-xs'
+                        >
+                            xem chi tiết
+                        </Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>:<></>}
+                <View
+                    className ='bg-white w-4/5 px-3 py-5 rounded-lg'
+                >
+                    <Text
+                        className ='text-orange-500 font-bold'
+                    >
+                    Giá: {formatCash(item.price)}
+                    </Text>
+                </View>   
+            </View>
          <View
              className = 'mt-4 p-3 bg-white rounded-lg shadow'
          >
